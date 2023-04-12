@@ -2,15 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../core/assets_path/fonts_path.dart';
+import '../../data/models/rooms_model.dart';
 
-class RoomWidgetBuilder extends StatefulWidget {
-  const RoomWidgetBuilder({Key? key}) : super(key: key);
+class RoomWidgetBuilder extends StatelessWidget {
+  final RoomModel? roomModel;
+  const RoomWidgetBuilder({Key? key, required this.roomModel}) : super(key: key);
 
-  @override
-  State<RoomWidgetBuilder> createState() => _RoomWidgetBuilderState();
-}
-
-class _RoomWidgetBuilderState extends State<RoomWidgetBuilder> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -24,7 +21,7 @@ class _RoomWidgetBuilderState extends State<RoomWidgetBuilder> {
           ),
           child: Center(
             child: Text(
-              'Room Name',
+              roomModel!.roomName??'Room Name',
               style: TextStyle(
                   color: Colors.grey,
                   fontFamily: FontsPath.tajawalRegular,
@@ -51,7 +48,7 @@ class _RoomWidgetBuilderState extends State<RoomWidgetBuilder> {
                   ),
                   child: Center(
                     child: Text(
-                      '48%',
+                      '${roomModel!.temp}%',
                       style: TextStyle(
                           color: Colors.black,
                           fontFamily: FontsPath.tajawalRegular,
@@ -76,7 +73,7 @@ class _RoomWidgetBuilderState extends State<RoomWidgetBuilder> {
                   ),
                   child: Center(
                     child: Text(
-                      '48%',
+                      '${roomModel!.hum}%',
                       style: TextStyle(
                           color: Colors.black,
                           fontFamily: FontsPath.tajawalRegular,

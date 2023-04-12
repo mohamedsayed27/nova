@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../core/app_colors/app_colors.dart';
-import '../../core/assets_path/images_path.dart';
 import '../widgets/gas_item_builder.dart';
 import '../widgets/nova_widget_container.dart';
 

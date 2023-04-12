@@ -1,13 +1,27 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:nova/data/models/home_device_data_model.dart';
 
 import '../../core/app_colors/app_colors.dart';
 import '../../core/assets_path/fonts_path.dart';
 
-class AddImageAlertDialog extends StatelessWidget{
+class AddDeviceNameAlertDialog extends StatefulWidget{
+  final HomeDeviceDataModel? homeDeviceDataModel;
+  const  AddDeviceNameAlertDialog({super.key, required this.homeDeviceDataModel});
+
+  @override
+  State<AddDeviceNameAlertDialog> createState() => _AddDeviceNameAlertDialogState();
+}
+
+class _AddDeviceNameAlertDialogState extends State<AddDeviceNameAlertDialog> {
   final TextEditingController controller = TextEditingController();
 
-  AddImageAlertDialog({super.key});
+  @override
+  void initState() {
+    controller.text = widget.homeDeviceDataModel?.deviceName??'';
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +37,7 @@ class AddImageAlertDialog extends StatelessWidget{
             TextField(
               controller: controller,
               decoration: InputDecoration(
-                hintText: 'User Name',
+                hintText: 'Device Name',
                 hintStyle: TextStyle(
                   color: Colors.grey,
                   fontFamily: FontsPath.tajawalRegular,
@@ -44,7 +58,11 @@ class AddImageAlertDialog extends StatelessWidget{
               ),
             ),
             ElevatedButton(
-              onPressed: () {
+              onPressed: () async{
+                FirebaseDatabase.instance.ref().update({"users/doha/devices/${widget.homeDeviceDataModel!.deviceNodeName}/name": controller.text}).whenComplete(() {
+                  controller.clear();
+                  Navigator.pop(context);
+                });
 
               },
               style: ElevatedButton.styleFrom(
