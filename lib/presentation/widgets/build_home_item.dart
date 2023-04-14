@@ -19,7 +19,7 @@ class DeviceControllerWidget extends StatelessWidget {
       children: [
         InkWell(
           onTap: () {
-            showDialog(context: context, builder: (context)=>AddDeviceNameAlertDialog(homeDeviceDataModel: homeDeviceDataModel,));
+            showDialog(context: context, builder: (context)=>AddDeviceNameAlertDialog(name: homeDeviceDataModel.deviceName, nodeName: homeDeviceDataModel.deviceNodeName, changeNameType: "device",));
           },
           child: Container(
             height: 60.h,

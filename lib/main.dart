@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nova/core/app_colors/app_colors.dart';
 import 'package:nova/core/app_router/app_router.dart';
 import 'core/app_router/screen_names.dart';
+import 'core/cache_manager/cache_helper.dart';
 import 'firebase_options.dart';
 
 void main() async{
@@ -11,6 +12,7 @@ void main() async{
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  await CacheHelper.init();
   runApp(const MyApp());
 }
 

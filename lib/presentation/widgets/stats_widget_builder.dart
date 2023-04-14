@@ -3,29 +3,36 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../core/assets_path/fonts_path.dart';
 import '../../data/models/rooms_model.dart';
+import 'add_device_name_dialog.dart';
 
 class RoomWidgetBuilder extends StatelessWidget {
   final RoomModel? roomModel;
-  const RoomWidgetBuilder({Key? key, required this.roomModel}) : super(key: key);
+  final String nodeName;
+  const RoomWidgetBuilder({Key? key, required this.roomModel, required this.nodeName}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Container(
-          height: 60.h,
-          width: double.infinity,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(5.r),
-            border: Border.all(color: Colors.grey),
-          ),
-          child: Center(
-            child: Text(
-              roomModel!.roomName??'Room Name',
-              style: TextStyle(
-                  color: Colors.grey,
-                  fontFamily: FontsPath.tajawalRegular,
-                  fontSize: 18.sp),
+        InkWell(
+          onTap: (){
+            showDialog(context: context, builder: (context)=>AddDeviceNameAlertDialog(name: roomModel!.roomName, nodeName: nodeName, changeNameType: "rooms",));
+          },
+          child: Container(
+            height: 60.h,
+            width: double.infinity,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(5.r),
+              border: Border.all(color: Colors.grey),
+            ),
+            child: Center(
+              child: Text(
+                roomModel!.roomName??'Room Name',
+                style: TextStyle(
+                    color: Colors.grey,
+                    fontFamily: FontsPath.tajawalRegular,
+                    fontSize: 18.sp),
+              ),
             ),
           ),
         ),

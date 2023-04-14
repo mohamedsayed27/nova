@@ -1,6 +1,7 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:nova/core/app_constants.dart';
 import 'package:nova/data/models/home_device_data_model.dart';
 
 class CustomSwitchButton extends StatefulWidget {
@@ -33,7 +34,7 @@ class _CustomSwitchButtonState extends State<CustomSwitchButton> {
           isOnOrOff = !isOnOrOff;
         });
         final ref =
-            await FirebaseDatabase.instance.ref().child("users/test").get();
+            await FirebaseDatabase.instance.ref().child("users/$username/test").get();
         String reference0 = ref.value.toString();
         List str2 = reference0.split("-").toList();
         if (widget.homeDeviceDataModel.status == 1) {
@@ -57,7 +58,7 @@ class _CustomSwitchButtonState extends State<CustomSwitchButton> {
         }
         FirebaseDatabase.instance
             .ref()
-            .update({'users/test': updatedStringRef});
+            .update({'users/$username/test': updatedStringRef});
       },
       child: SizedBox(
         width: 65.w,

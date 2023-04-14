@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:nova/core/app_constants.dart';
 
 import '../../core/assets_path/fonts_path.dart';
 import '../widgets/nova_widget_container.dart';
@@ -24,7 +25,7 @@ class ProfileScreen extends StatelessWidget {
             ),
             child: Center(
               child: Text(
-                'User Name',
+                '${username}',
                 style: TextStyle(
                     color: Colors.grey,
                     fontFamily: FontsPath.tajawalRegular,

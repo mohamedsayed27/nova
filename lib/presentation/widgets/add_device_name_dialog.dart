@@ -1,14 +1,17 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:nova/data/models/home_device_data_model.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import '../../core/app_colors/app_colors.dart';
+import '../../core/app_constants.dart';
 import '../../core/assets_path/fonts_path.dart';
 
 class AddDeviceNameAlertDialog extends StatefulWidget{
-  final HomeDeviceDataModel? homeDeviceDataModel;
-  const  AddDeviceNameAlertDialog({super.key, required this.homeDeviceDataModel});
+  final String? name;
+  final String? nodeName;
+  final String? changeNameType;
+  const  AddDeviceNameAlertDialog({super.key, required this.name, required this.nodeName, required this.changeNameType});
 
   @override
   State<AddDeviceNameAlertDialog> createState() => _AddDeviceNameAlertDialogState();
@@ -19,7 +22,7 @@ class _AddDeviceNameAlertDialogState extends State<AddDeviceNameAlertDialog> {
 
   @override
   void initState() {
-    controller.text = widget.homeDeviceDataModel?.deviceName??'';
+    controller.text = widget.name??'';
     super.initState();
   }
 
@@ -57,13 +60,17 @@ class _AddDeviceNameAlertDialogState extends State<AddDeviceNameAlertDialog> {
                 ),
               ),
             ),
+            SizedBox(height: 30.h,),
             ElevatedButton(
               onPressed: () async{
-                FirebaseDatabase.instance.ref().update({"users/doha/devices/${widget.homeDeviceDataModel!.deviceNodeName}/name": controller.text}).whenComplete(() {
-                  controller.clear();
-                  Navigator.pop(context);
-                });
-
+                if(controller.text.isNotEmpty){
+                  FirebaseDatabase.instance.ref().update({"$baseFirebaseDatabaseNode$username/${widget.changeNameType}/${widget.nodeName}/name": controller.text}).whenComplete(() {
+                    controller.clear();
+                    Navigator.pop(context);
+                  });
+                }else {
+                  Fluttertoast.showToast(msg: 'يجب ادخال الاسم');
+                }
               },
               style: ElevatedButton.styleFrom(
                   shape: RoundedRectangleBorder(

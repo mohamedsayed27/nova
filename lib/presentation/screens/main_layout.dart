@@ -105,7 +105,7 @@ class _MainLayoutState extends State<MainLayout> {
                   child: SvgPicture.asset(
                     SvgPath.gas,
                     color: cIndex == 2 ? AppColors.primaryColor : Colors.grey,
-                    width: 30.w,
+                    width: 35.w,
                     height: 35.h,
                   ),
                 ),

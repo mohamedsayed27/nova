@@ -1,7 +1,7 @@
-
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:nova/core/app_constants.dart';
 import 'package:quiver/iterables.dart';
 import 'package:rxdart/rxdart.dart';
 import '../../data/models/device_model.dart';
@@ -36,10 +36,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   stream: Rx.combineLatest2(
                       FirebaseDatabase.instance
                           .ref()
-                          .child("users/test")
+                          .child("users/$username/test")
                           .onValue,
                       FirebaseDatabase.instance
-                          .ref("users/doha/devices")
+                          .ref("users/$username/device")
                           .onValue, (a, b) {
 
                     return [a, b];
