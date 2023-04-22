@@ -1,11 +1,13 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:nova/core/app_colors/app_colors.dart';
 import 'package:nova/core/app_router/screen_names.dart';
 import 'package:nova/core/assets_path/fonts_path.dart';
 import 'package:nova/core/assets_path/images_path.dart';
+import 'package:nova/core/assets_path/svg_path.dart';
 import 'package:nova/core/cache_manager/cache_helper.dart';
 import 'package:nova/core/cache_manager/cache_keys.dart';
 
@@ -75,10 +77,10 @@ class _LoginScreenState extends State<LoginScreen> {
               height: MediaQuery.of(context).size.width / 3,
             ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 30.w),
+              padding: EdgeInsets.symmetric(horizontal: 50.w),
               child: Container(
                 height: 90.h,
-                width: 130.w,
+                width: 90.w,
                 decoration: BoxDecoration(
                   color: AppColors.primaryColor,
                   borderRadius: BorderRadius.circular(25.r),
@@ -90,9 +92,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   ],
                 ),
                 child: Center(
-                  child: Image.asset(
-                    ImagesPath.splashLogo,
-                    width: 100.w,
+                  child: SvgPicture.asset(
+                    SvgPath.home,
+                    color: Colors.black,
+                    width: 60.w,
                     height: 90.h,
                   ),
                 ),

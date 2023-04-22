@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:nova/data/models/home_device_data_model.dart';
 
 import '../../core/assets_path/fonts_path.dart';
-import 'add_device_name_dialog.dart';
+import '../../data/models/new_device_model.dart';
 import 'custom_switch_button.dart';
+import 'new_alert.dart';
 
 class DeviceControllerWidget extends StatelessWidget {
-  final HomeDeviceDataModel homeDeviceDataModel;
-  const DeviceControllerWidget({Key? key, required this.homeDeviceDataModel}) : super(key: key);
+  final NewDeviceModel newDeviceModel;
+  const DeviceControllerWidget({Key? key, required this.newDeviceModel}) : super(key: key);
 
 
   @override
@@ -17,29 +17,31 @@ class DeviceControllerWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        InkWell(
-          onTap: () {
-            showDialog(context: context, builder: (context)=>AddDeviceNameAlertDialog(name: homeDeviceDataModel.deviceName, nodeName: homeDeviceDataModel.deviceNodeName, changeNameType: "device",));
-          },
-          child: Container(
-            height: 60.h,
-            width: 120.w,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(5.r),
-              border: Border.all(color: Colors.grey),
-            ),
-            child: Center(
-              child: Text(
-                homeDeviceDataModel.deviceName??'Device Name',
-                style: TextStyle(
-                    color: Colors.grey,
-                    fontFamily: FontsPath.tajawalRegular,
-                    fontSize: 18.sp),
+        Expanded(
+          child: InkWell(
+            onTap: () {
+              showDialog(context: context, builder: (context)=>NewAddDeviceNameAlertDialog(newDeviceModel: newDeviceModel,));
+            },
+            child: Container(
+              height: 60.h,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(5.r),
+                border: Border.all(color: Colors.grey),
+              ),
+              child: Center(
+                child: Text(
+                  newDeviceModel.deviceName??'Device Name',
+                  style: TextStyle(
+                      color: Colors.grey,
+                      fontFamily: FontsPath.tajawalRegular,
+                      fontSize: 18.sp),
+                ),
               ),
             ),
           ),
         ),
-        CustomSwitchButton(homeDeviceDataModel: homeDeviceDataModel,),
+        SizedBox(width: 20.w,),
+        CustomSwitchButton( newDeviceModel: newDeviceModel,),
       ],
     );
   }

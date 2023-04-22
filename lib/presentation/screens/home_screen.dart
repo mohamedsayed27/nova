@@ -1,11 +1,9 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:nova/core/app_constants.dart';
 import 'package:quiver/iterables.dart';
-import 'package:rxdart/rxdart.dart';
-import '../../data/models/device_model.dart';
-import '../../data/models/home_device_data_model.dart';
+import '../../core/app_constants.dart';
+import '../../data/models/new_device_model.dart';
 import '../widgets/build_home_item.dart';
 import '../widgets/nova_widget_container.dart';
 
@@ -17,9 +15,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  List<DeviceModel> devicesList = [];
-  List<HomeDeviceDataModel> homeDeviceDataList = [];
 
+  List<NewDeviceModel> newDeviceList =[];
 
   @override
   Widget build(BuildContext context) {
@@ -33,96 +30,63 @@ class _HomeScreenState extends State<HomeScreen> {
               const NovaContainer(),
               Expanded(
                 child: StreamBuilder(
-                  stream: Rx.combineLatest2(
-                      FirebaseDatabase.instance
-                          .ref()
-                          .child("users/$username/test")
-                          .onValue,
-                      FirebaseDatabase.instance
-                          .ref("users/$username/device")
-                          .onValue, (a, b) {
-
-                    return [a, b];
-                  }),
+                  stream: FirebaseDatabase.instance
+                      .ref()
+                      .child("users/$username").child('newTest')
+                      .onValue,
                   builder: (BuildContext context,
                       AsyncSnapshot<dynamic> snapshot) {
-                    if(snapshot.hasData){
-                      final map1 = snapshot.data[1].snapshot.children.toList();
-                      devicesList = [];
-                      map1.forEach((e){
-                        var map = {
-                          'name': e.value['name'].toString(),
-                          'id': e.value['id'],
-                          'deviceNodeName': e.key,
-                        };
-                        final user = DeviceModel.fromJson(map);
-                        devicesList.add(user);
-                      });
-                      final reference2 = snapshot.data[0].snapshot.value.toString();
-                      String reference = reference2.substring(2);
-                      List<Map<String, dynamic>> timerList = [];
-                      List<Map<String, dynamic>> statusList = [];
-                      List<Map<String, dynamic>> devicesIdsIdx = [];
-                      Map<String, dynamic> deviceMap = {};
-                      List all = [];
-                      int statusIndex = 1;
-                      int timerIndex = 2;
-                      int nameIndex = 3;
-                      List str = reference.split("-").toList();
 
-                      for (int i = 1; i <= str.length; i++) {
-                        if (i == statusIndex) {
+                    if(snapshot.hasData){
+                      final reference2 = snapshot.data.snapshot.value.toString();
+                      List<Map<String, dynamic>> statusList = [];
+                      List<Map<String, dynamic>> devicesList = [];
+                      List all = [];
+                      Map<String, dynamic> deviceMap = {};
+                      String reference = reference2.substring(2);
+                      List str = reference.split("-").toList();
+                      for (int i = 0; i < str.length; i++) {
+                        if (i % 2 == 0) {
                           statusList.add({
-                            "status": int.parse(str[i - 1]),
-                            "statusIndex": i + 2
+                            'deviceStatusIndex': i,
+                            'deviceStatus': str[i],
                           });
-                          statusIndex = i + 3;
-                        }
-                        if (i == timerIndex) {
-                          timerList.add({
-                            "timer": int.parse(str[i - 1]),
-                            "timerIndex": i + 2
+                        } if (i % 2 != 0) {
+                          devicesList.add({
+                            'deviceNameIndex': i,
+                            'deviceName': str[i],
                           });
-                          timerIndex = i + 3;
-                        }
-                        if (i == nameIndex) {
-                          devicesIdsIdx.add({
-                            "deviceId": int.parse(str[i - 1]),
-                            "deviceIdIndex": i + 2
-                          });
-                          nameIndex = i + 3;
                         }
                       }
-                      for (var pair in zip(
-                          [statusList, timerList, devicesIdsIdx])) {
+                      for (var pair in zip([
+                        statusList,
+                        devicesList,
+                      ])) {
                         all.add(pair);
                       }
-                      List<Map<String, dynamic>> mapTest =[];
-                      homeDeviceDataList.clear();
+                      newDeviceList = [];
                       for (var element in all) {
                         deviceMap = Map<String, dynamic> .from({
-                          "status": element[0]['status'],
-                          "timer": element[1]['timer'],
-                          "name": devicesList.firstWhere((e) => e.id == element[2]["deviceId"]).name,
-                          "deviceNodeName": devicesList.firstWhere((e) => e.id == element[2]["deviceId"]).deviceNodeName,
-                          "deviceId": element[2]['deviceId'],
-                          "statusIndex": element[0]['statusIndex'],
-                          "timerIndex": element[1]['timerIndex'],
-                          "deviceIdIndex": element[2]['deviceIdIndex'],
+                          'deviceStatusIdx':element[0]['deviceStatusIndex'].toString(),
+                          'deviceStatus':element[0]['deviceStatus'].toString(),
+                          'deviceNameIdx':element[1]['deviceNameIndex'].toString(),
+                          'deviceName':element[1]['deviceName'].toString(),
                         });
-                        mapTest.add(deviceMap);
-                        homeDeviceDataList.add(HomeDeviceDataModel.fromJson(deviceMap));
+                        if(!newDeviceList.contains(NewDeviceModel.fromJson(deviceMap))){
+                          newDeviceList.add(NewDeviceModel.fromJson(deviceMap));
+                        }
                       }
+
                       return ListView.builder(
                         itemBuilder: (BuildContext context, int index) {
                           return Padding(
-                            padding: EdgeInsets.symmetric(vertical: 10.h),
+                            padding: EdgeInsets.symmetric(vertical: 20.h),
                             child: DeviceControllerWidget(
-                              homeDeviceDataModel: homeDeviceDataList[index],
+                              newDeviceModel: newDeviceList[index],
                             ),
                           );
                         },
-                        itemCount: snapshot.data[1].snapshot.children.length,
+                        itemCount: devicesList.length,
                       );
                     }else{
                       return const Center(

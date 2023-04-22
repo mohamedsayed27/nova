@@ -1,13 +1,14 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:nova/core/app_constants.dart';
-import 'package:nova/data/models/home_device_data_model.dart';
+
+import '../../core/app_constants.dart';
+import '../../data/models/new_device_model.dart';
 
 class CustomSwitchButton extends StatefulWidget {
-  final HomeDeviceDataModel homeDeviceDataModel;
+  final NewDeviceModel newDeviceModel;
 
-  const CustomSwitchButton({Key? key, required this.homeDeviceDataModel})
+  const CustomSwitchButton({Key? key, required this.newDeviceModel})
       : super(key: key);
 
   @override
@@ -19,7 +20,7 @@ class _CustomSwitchButtonState extends State<CustomSwitchButton> {
 
   @override
   void initState() {
-    isOnOrOff = widget.homeDeviceDataModel.status == 1 ? true : false;
+    isOnOrOff = int.parse(widget.newDeviceModel.deviceStatus!) == 1 ? true : false;
     super.initState();
   }
 
@@ -34,31 +35,25 @@ class _CustomSwitchButtonState extends State<CustomSwitchButton> {
           isOnOrOff = !isOnOrOff;
         });
         final ref =
-            await FirebaseDatabase.instance.ref().child("users/$username/test").get();
+            await FirebaseDatabase.instance.ref().child("users/$username/newTest").get();
         String reference0 = ref.value.toString();
-        List str2 = reference0.split("-").toList();
-        if (widget.homeDeviceDataModel.status == 1) {
-          str2.replaceRange(
-              (int.parse(widget.homeDeviceDataModel.statusIndex.toString()) -
-                  2),
-              (int.parse(widget.homeDeviceDataModel.statusIndex.toString()) -
-                  1),
-              ["0"].toList());
-          List updatedRefList = str2.map((e) => "$e").toList();
+        // List str2 = reference0.split("-").toList();
+        // String reference0 = ref.value.toString();
+        final updateField =  FirebaseDatabase.instance.ref();
+        List str = reference0.split("-").toList();
+        if (int.parse(widget.newDeviceModel.deviceStatus!) == 1) {
+          str.replaceRange((int.parse(widget.newDeviceModel.deviceStatusIdx!)+1), (int.parse(widget.newDeviceModel.deviceStatusIdx!)+2), ['0'].toList());
+          List updatedRefList = str.map((e) => "$e").toList();
           updatedStringRef = updatedRefList.join("-");
+          updateField.update({"users/$username/newTest": updatedStringRef}).whenComplete(() {
+          });
         } else {
-          str2.replaceRange(
-              (int.parse(widget.homeDeviceDataModel.statusIndex.toString()) -
-                  2),
-              (int.parse(widget.homeDeviceDataModel.statusIndex.toString()) -
-                  1),
-              ["1"].toList());
-          List updatedRefList = str2.map((e) => "$e").toList();
+          str.replaceRange((int.parse(widget.newDeviceModel.deviceStatusIdx!)+1), (int.parse(widget.newDeviceModel.deviceStatusIdx!)+2), ['1'].toList());
+          List updatedRefList = str.map((e) => "$e").toList();
           updatedStringRef = updatedRefList.join("-");
+          updateField.update({"users/$username/newTest": updatedStringRef}).whenComplete(() {
+          });
         }
-        FirebaseDatabase.instance
-            .ref()
-            .update({'users/$username/test': updatedStringRef});
       },
       child: SizedBox(
         width: 65.w,

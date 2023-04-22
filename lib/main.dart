@@ -1,13 +1,15 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:nova/business_logic/devices_cubit/devices_cubit.dart';
 import 'package:nova/core/app_colors/app_colors.dart';
 import 'package:nova/core/app_router/app_router.dart';
 import 'core/app_router/screen_names.dart';
 import 'core/cache_manager/cache_helper.dart';
 import 'firebase_options.dart';
 
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -24,14 +26,22 @@ class MyApp extends StatelessWidget {
     return ScreenUtilInit(
       designSize: const Size(413, 892),
       builder: (BuildContext context, Widget? child) {
-        return MaterialApp(
-          title: 'Flutter Demo',
-          theme: ThemeData(
-            primarySwatch: AppColors.createMaterialColor(AppColors.primaryColor),
+        return MultiBlocProvider(
+          providers: [
+            BlocProvider(
+              create: (context) => DevicesCubit(),
+            )
+          ],
+          child: MaterialApp(
+            title: 'Flutter Demo',
+            theme: ThemeData(
+              primarySwatch:
+                  AppColors.createMaterialColor(AppColors.primaryColor),
+            ),
+            onGenerateRoute: AppRouter.generateRoute,
+            initialRoute: ScreenName.splashScreen,
+            // home: TestScreen(),
           ),
-          onGenerateRoute: AppRouter.generateRoute,
-          initialRoute: ScreenName.splashScreen,
-          // home: MainLayout(),
         );
       },
     );
