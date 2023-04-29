@@ -26,6 +26,8 @@ class SvgPath{
   static const logoBlue = 'assets/svg/logoBlue.svg';
   static const logout = 'assets/svg/logout.svg';
   static const dollar = 'assets/svg/dollar.svg';
+  static const whatsappIcon = 'assets/svg/whatsapp.svg';
+  static const facebookIcon = 'assets/svg/facebook.svg';
 
   SvgPath._();
 }

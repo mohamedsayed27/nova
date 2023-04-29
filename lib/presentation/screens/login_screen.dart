@@ -12,6 +12,8 @@ import 'package:nova/core/cache_manager/cache_helper.dart';
 import 'package:nova/core/cache_manager/cache_keys.dart';
 
 import '../../core/app_constants.dart';
+import '../widgets/auth_text_field.dart';
+import '../widgets/forget_password_widget.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -71,16 +73,16 @@ class _LoginScreenState extends State<LoginScreen> {
       child: Scaffold(
         backgroundColor: Colors.white,
         body: ListView(
-          padding: EdgeInsets.symmetric(horizontal: 100.w),
+          padding: EdgeInsets.symmetric(horizontal: 20.w),
           children: [
             SizedBox(
               height: MediaQuery.of(context).size.width / 3,
             ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 50.w),
+              padding: EdgeInsets.symmetric(horizontal: 110.w),
               child: Container(
-                height: 90.h,
-                width: 90.w,
+                height: 140.h,
+                width: 120.w,
                 decoration: BoxDecoration(
                   color: AppColors.primaryColor,
                   borderRadius: BorderRadius.circular(25.r),
@@ -92,11 +94,11 @@ class _LoginScreenState extends State<LoginScreen> {
                   ],
                 ),
                 child: Center(
-                  child: SvgPicture.asset(
-                    SvgPath.home,
+                  child: Image.asset(
+                    ImagesPath.splashLogo,
                     color: Colors.black,
-                    width: 60.w,
-                    height: 90.h,
+                    width: 100.w,
+                    height: 80.h,
                   ),
                 ),
               ),
@@ -104,114 +106,53 @@ class _LoginScreenState extends State<LoginScreen> {
             SizedBox(
               height: 35.h,
             ),
-            TextField(
-              controller: nameController,
-              decoration: InputDecoration(
-                hintText: 'User Name',
-                hintStyle: TextStyle(
-                  color: Colors.grey,
-                  fontFamily: FontsPath.tajawalRegular,
-                  fontSize: 18.sp,
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(
-                    5.r,
-                  ),
-                  borderSide: const BorderSide(
-                    color: Colors.grey,
-                  ),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(
-                    5.r,
-                  ),
-                  borderSide: const BorderSide(
-                    color: Colors.grey,
-                  ),
-                ),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(
-                    5.r,
-                  ),
-                  borderSide: const BorderSide(
-                    color: Colors.grey,
-                  ),
-                ),
-              ),
-            ),
+            AuthTextField(controller: nameController, title: "Username", isPassword: false),
             SizedBox(
               height: 35.h,
             ),
-            TextField(
-              cursorHeight: 25.h,
-              controller: passwordController,
-              decoration: InputDecoration(
-                hintText: 'Password',
-                hintStyle: TextStyle(
-                    color: Colors.grey,
-                    fontFamily: FontsPath.tajawalRegular,
-                    fontSize: 18.sp),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(
-                    5.r,
-                  ),
-                  borderSide: const BorderSide(
-                    color: Colors.grey,
-                  ),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(
-                    5.r,
-                  ),
-                  borderSide: const BorderSide(
-                    color: Colors.grey,
-                  ),
-                ),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(
-                    5.r,
-                  ),
-                  borderSide: const BorderSide(
-                    color: Colors.grey,
-                  ),
-                ),
-              ),
+            AuthTextField(controller: passwordController, title: "Password", isPassword: true),
+            SizedBox(
+              height: 10.h,
             ),
+            const ForgetPasswordWidget(),
             SizedBox(
               height: 35.h,
             ),
-            ElevatedButton(
-              onPressed: () {
-                if (nameController.text.isNotEmpty &&
-                    passwordController.text.isNotEmpty) {
-                  _login(
-                    userName: nameController.text,
-                    password: passwordController.text,
-                    context: context,
-                  );
-                } else {
-                  Fluttertoast.showToast(
-                      msg: 'يجب ادخال جميع البيانات',
-                      backgroundColor: Colors.red);
-                }
-              },
-              style: ElevatedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5.r)),
-                  foregroundColor: Colors.white,
-                  backgroundColor: AppColors.primaryColor,
-                  padding: EdgeInsets.symmetric(vertical: 12.h)),
-              child: Center(
-                child: Text(
-                  'Login',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontFamily: FontsPath.tajawalBold,
-                    fontSize: 20.sp,
+            Padding(
+              padding:  EdgeInsets.symmetric(horizontal: 60.w),
+              child: ElevatedButton(
+                onPressed: () {
+                  if (nameController.text.isNotEmpty &&
+                      passwordController.text.isNotEmpty) {
+                    _login(
+                      userName: nameController.text,
+                      password: passwordController.text,
+                      context: context,
+                    );
+                  } else {
+                    Fluttertoast.showToast(
+                        msg: 'يجب ادخال جميع البيانات',
+                        backgroundColor: Colors.red);
+                  }
+                },
+                style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(6.r)),
+                    foregroundColor: Colors.white,
+                    backgroundColor: AppColors.primaryColor,
+                    padding: EdgeInsets.symmetric(vertical: 14.h)),
+                child: Center(
+                  child: Text(
+                    'Login',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontFamily: FontsPath.tajawalBold,
+                      fontSize: 20.sp,
+                    ),
                   ),
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),

@@ -22,7 +22,7 @@ class _GasItemBuilderState extends State<GasItemBuilder> {
       children: [
         InkWell(
           onTap: (){
-            showDialog(context: context, builder: (context)=>AddDeviceNameAlertDialog(name: widget.roomName, nodeName: widget.nodeName, changeNameType: "rooms",));
+            showDialog(context: context, builder: (context)=>AddDeviceNameAlertDialog(name: widget.roomName, nodeName: widget.nodeName, changeNameType: "gasRooms",));
           },
           child: Container(
             height: 60.h,

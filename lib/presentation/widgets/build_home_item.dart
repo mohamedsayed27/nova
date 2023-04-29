@@ -14,33 +14,32 @@ class DeviceControllerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Expanded(
-          child: InkWell(
-            onTap: () {
-              showDialog(context: context, builder: (context)=>NewAddDeviceNameAlertDialog(newDeviceModel: newDeviceModel,));
-            },
-            child: Container(
-              height: 60.h,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(5.r),
-                border: Border.all(color: Colors.grey),
-              ),
-              child: Center(
-                child: Text(
-                  newDeviceModel.deviceName??'Device Name',
-                  style: TextStyle(
-                      color: Colors.grey,
-                      fontFamily: FontsPath.tajawalRegular,
-                      fontSize: 18.sp),
-                ),
+        InkWell(
+          onTap: () {
+            showDialog(context: context, builder: (context)=>NewAddDeviceNameAlertDialog(newDeviceModel: newDeviceModel,));
+          },
+          child: Container(
+            width: 170.w,
+            height: 60.h,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(5.r),
+              border: Border.all(color: Colors.grey),
+            ),
+            child: Center(
+              child: Text(
+                newDeviceModel.deviceName??'Device Name',
+                style: TextStyle(
+                    color: Colors.grey,
+                    fontFamily: FontsPath.tajawalRegular,
+                    fontSize: 18.sp),
               ),
             ),
           ),
         ),
-        SizedBox(width: 20.w,),
+        SizedBox(width: 50.w,),
         CustomSwitchButton( newDeviceModel: newDeviceModel,),
       ],
     );
