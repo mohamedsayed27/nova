@@ -1,13 +1,11 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:nova/core/app_colors/app_colors.dart';
 import 'package:nova/core/app_router/screen_names.dart';
 import 'package:nova/core/assets_path/fonts_path.dart';
 import 'package:nova/core/assets_path/images_path.dart';
-import 'package:nova/core/assets_path/svg_path.dart';
 import 'package:nova/core/cache_manager/cache_helper.dart';
 import 'package:nova/core/cache_manager/cache_keys.dart';
 
@@ -36,7 +34,6 @@ class _LoginScreenState extends State<LoginScreen> {
     dynamic user = await firebaseInstance
         .child("$baseFirebaseDatabaseNode$userName")
         .get();
-    print(user.value);
     if (user.value != null) {
       dynamic pass = await firebaseInstance
           .child("$baseFirebaseDatabaseNode$userName/pass")
@@ -126,7 +123,6 @@ class _LoginScreenState extends State<LoginScreen> {
                 onPressed: () {
                   if (nameController.text.isNotEmpty &&
                       passwordController.text.isNotEmpty) {
-                    print(nameController.text);
                     _login(
                       userName: nameController.text,
                       password: passwordController.text,

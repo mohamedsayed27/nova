@@ -32,12 +32,12 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: StreamBuilder(
                   stream: FirebaseDatabase.instance
                       .ref()
-                      .child("users/$username").child('newTest')
-                      .onValue,
+                      .child("users/$username").child('newTest').onValue,
                   builder: (BuildContext context,
                       AsyncSnapshot<dynamic> snapshot) {
 
                     if(snapshot.hasData){
+
                       final reference2 = snapshot.data.snapshot.value.toString();
                       List<Map<String, dynamic>> statusList = [];
                       List<Map<String, dynamic>> devicesList = [];
@@ -76,7 +76,6 @@ class _HomeScreenState extends State<HomeScreen> {
                           newDeviceList.add(NewDeviceModel.fromJson(deviceMap));
                         }
                       }
-
                       return ListView.builder(
                         itemBuilder: (BuildContext context, int index) {
                           return Padding(

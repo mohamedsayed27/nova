@@ -28,6 +28,7 @@ class _CustomSwitchButtonState extends State<CustomSwitchButton> {
 
   @override
   Widget build(BuildContext context) {
+    isOnOrOff = int.parse(widget.newDeviceModel.deviceStatus!) == 1 ? true : false;
     return InkWell(
       overlayColor: MaterialStateProperty.all(Colors.transparent),
       onTap: () async {
