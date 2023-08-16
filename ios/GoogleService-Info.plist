@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>26629335757-6h666s8g3o60t9c94g2amm6ap8a1m4ul.apps.googleusercontent.com</string>
+	<string>936102801906-csnhpfcfjkf08le03q8srm0she4c1m8r.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.26629335757-6h666s8g3o60t9c94g2amm6ap8a1m4ul</string>
+	<string>com.googleusercontent.apps.936102801906-csnhpfcfjkf08le03q8srm0she4c1m8r</string>
 	<key>API_KEY</key>
-	<string>AIzaSyC0ejIkGxvE5As0KWGsmkz2dtNbDvhgoKE</string>
+	<string>AIzaSyCMCWdqPyM4uLUgUPzrsjIQzVEi3mYZN_g</string>
 	<key>GCM_SENDER_ID</key>
-	<string>26629335757</string>
+	<string>936102801906</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.example.nova</string>
+	<string>com.mohamedsayed.nova</string>
 	<key>PROJECT_ID</key>
-	<string>eslam-23</string>
+	<string>nova-7bc8e</string>
 	<key>STORAGE_BUCKET</key>
-	<string>eslam-23.appspot.com</string>
+	<string>nova-7bc8e.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,8 +29,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:26629335757:ios:709d88b556e106273f5784</string>
+	<string>1:936102801906:ios:ffe0326039e230ac367b6b</string>
 	<key>DATABASE_URL</key>
-	<string>https://eslam-23-default-rtdb.firebaseio.com</string>
+	<string>https://nova-7bc8e-default-rtdb.firebaseio.com</string>
 </dict>
 </plist>

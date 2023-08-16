@@ -44,44 +44,44 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyD9aToQdkpjTiO_DZDu6SySFy4svNuTLs0',
-    appId: '1:26629335757:web:2741947da4d2784d3f5784',
-    messagingSenderId: '26629335757',
-    projectId: 'eslam-23',
-    authDomain: 'eslam-23.firebaseapp.com',
-    databaseURL: 'https://eslam-23-default-rtdb.firebaseio.com',
-    storageBucket: 'eslam-23.appspot.com',
-    measurementId: 'G-MLTR83PV1F',
+    apiKey: 'AIzaSyCrpH8DcLs_UixGA5iAn5A2mOyb-cmYD4U',
+    appId: '1:936102801906:web:9f7e5ad25947327f367b6b',
+    messagingSenderId: '936102801906',
+    projectId: 'nova-7bc8e',
+    authDomain: 'nova-7bc8e.firebaseapp.com',
+    databaseURL: 'https://nova-7bc8e-default-rtdb.firebaseio.com',
+    storageBucket: 'nova-7bc8e.appspot.com',
+    measurementId: 'G-36KGGBH2CC',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyAVcUREfrJ7pnUUaqGgWqOLVSCv1CWX6Q4',
-    appId: '1:26629335757:android:8e978737dcdb97ad3f5784',
-    messagingSenderId: '26629335757',
-    projectId: 'eslam-23',
-    databaseURL: 'https://eslam-23-default-rtdb.firebaseio.com',
-    storageBucket: 'eslam-23.appspot.com',
+    apiKey: 'AIzaSyAZEpJrTCtsa1XNC4MGoGumKOD6O39ZB3Y',
+    appId: '1:936102801906:android:48be759b223d8acb367b6b',
+    messagingSenderId: '936102801906',
+    projectId: 'nova-7bc8e',
+    databaseURL: 'https://nova-7bc8e-default-rtdb.firebaseio.com',
+    storageBucket: 'nova-7bc8e.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyC0ejIkGxvE5As0KWGsmkz2dtNbDvhgoKE',
-    appId: '1:26629335757:ios:709d88b556e106273f5784',
-    messagingSenderId: '26629335757',
-    projectId: 'eslam-23',
-    databaseURL: 'https://eslam-23-default-rtdb.firebaseio.com',
-    storageBucket: 'eslam-23.appspot.com',
-    iosClientId: '26629335757-6h666s8g3o60t9c94g2amm6ap8a1m4ul.apps.googleusercontent.com',
-    iosBundleId: 'com.example.nova',
+    apiKey: 'AIzaSyCMCWdqPyM4uLUgUPzrsjIQzVEi3mYZN_g',
+    appId: '1:936102801906:ios:ffe0326039e230ac367b6b',
+    messagingSenderId: '936102801906',
+    projectId: 'nova-7bc8e',
+    databaseURL: 'https://nova-7bc8e-default-rtdb.firebaseio.com',
+    storageBucket: 'nova-7bc8e.appspot.com',
+    iosClientId: '936102801906-csnhpfcfjkf08le03q8srm0she4c1m8r.apps.googleusercontent.com',
+    iosBundleId: 'com.mohamedsayed.nova',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyC0ejIkGxvE5As0KWGsmkz2dtNbDvhgoKE',
-    appId: '1:26629335757:ios:709d88b556e106273f5784',
-    messagingSenderId: '26629335757',
-    projectId: 'eslam-23',
-    databaseURL: 'https://eslam-23-default-rtdb.firebaseio.com',
-    storageBucket: 'eslam-23.appspot.com',
-    iosClientId: '26629335757-6h666s8g3o60t9c94g2amm6ap8a1m4ul.apps.googleusercontent.com',
-    iosBundleId: 'com.example.nova',
+    apiKey: 'AIzaSyCMCWdqPyM4uLUgUPzrsjIQzVEi3mYZN_g',
+    appId: '1:936102801906:ios:ffe0326039e230ac367b6b',
+    messagingSenderId: '936102801906',
+    projectId: 'nova-7bc8e',
+    databaseURL: 'https://nova-7bc8e-default-rtdb.firebaseio.com',
+    storageBucket: 'nova-7bc8e.appspot.com',
+    iosClientId: '936102801906-csnhpfcfjkf08le03q8srm0she4c1m8r.apps.googleusercontent.com',
+    iosBundleId: 'com.mohamedsayed.nova',
   );
 }

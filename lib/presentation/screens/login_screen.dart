@@ -36,10 +36,12 @@ class _LoginScreenState extends State<LoginScreen> {
     dynamic user = await firebaseInstance
         .child("$baseFirebaseDatabaseNode$userName")
         .get();
+    print(user.value);
     if (user.value != null) {
       dynamic pass = await firebaseInstance
           .child("$baseFirebaseDatabaseNode$userName/pass")
           .get();
+
       if (password == pass.value) {
         popNav.pop();
         CacheHelper.saveData(key: CacheKeys.username, value: user.key)
@@ -124,6 +126,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 onPressed: () {
                   if (nameController.text.isNotEmpty &&
                       passwordController.text.isNotEmpty) {
+                    print(nameController.text);
                     _login(
                       userName: nameController.text,
                       password: passwordController.text,

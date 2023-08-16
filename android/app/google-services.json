@@ -1,64 +1,42 @@
 {
   "project_info": {
-    "project_number": "26629335757",
-    "firebase_url": "https://eslam-23-default-rtdb.firebaseio.com",
-    "project_id": "eslam-23",
-    "storage_bucket": "eslam-23.appspot.com"
+    "project_number": "936102801906",
+    "firebase_url": "https://nova-7bc8e-default-rtdb.firebaseio.com",
+    "project_id": "nova-7bc8e",
+    "storage_bucket": "nova-7bc8e.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:26629335757:android:8e978737dcdb97ad3f5784",
+        "mobilesdk_app_id": "1:936102801906:android:48be759b223d8acb367b6b",
         "android_client_info": {
-          "package_name": "com.example.nova"
+          "package_name": "com.mohamedsayed.nova"
         }
       },
       "oauth_client": [
         {
-          "client_id": "26629335757-rn0kgnvpi9mlt65ae2ufjac500e8o5cb.apps.googleusercontent.com",
+          "client_id": "936102801906-lk00q6536e64hjcs8jgvahokfbr02rm7.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAVcUREfrJ7pnUUaqGgWqOLVSCv1CWX6Q4"
+          "current_key": "AIzaSyAZEpJrTCtsa1XNC4MGoGumKOD6O39ZB3Y"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "26629335757-rn0kgnvpi9mlt65ae2ufjac500e8o5cb.apps.googleusercontent.com",
+              "client_id": "936102801906-en3f85l6ri9uqpu7alb9gcq5n1gofq0r.apps.googleusercontent.com",
               "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:26629335757:android:6b5bfbd9b6b201aa3f5784",
-        "android_client_info": {
-          "package_name": "com.saif.nova"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "26629335757-rn0kgnvpi9mlt65ae2ufjac500e8o5cb.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyAVcUREfrJ7pnUUaqGgWqOLVSCv1CWX6Q4"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
+            },
             {
-              "client_id": "26629335757-rn0kgnvpi9mlt65ae2ufjac500e8o5cb.apps.googleusercontent.com",
-              "client_type": 3
+              "client_id": "936102801906-csnhpfcfjkf08le03q8srm0she4c1m8r.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.mohamedsayed.nova"
+              }
             }
           ]
         }
