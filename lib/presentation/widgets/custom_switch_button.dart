@@ -18,42 +18,45 @@ class CustomSwitchButton extends StatefulWidget {
 class _CustomSwitchButtonState extends State<CustomSwitchButton> {
   late bool isOnOrOff;
 
-  @override
-  void initState() {
-    isOnOrOff = int.parse(widget.newDeviceModel.deviceStatus!) == 1 ? true : false;
-    super.initState();
-  }
-
   String updatedStringRef = '';
 
   @override
   Widget build(BuildContext context) {
-    isOnOrOff = int.parse(widget.newDeviceModel.deviceStatus!) == 1 ? true : false;
+    isOnOrOff =
+        int.parse(widget.newDeviceModel.deviceStatus!) == 1 ? true : false;
     return InkWell(
       overlayColor: MaterialStateProperty.all(Colors.transparent),
       onTap: () async {
         setState(() {
           isOnOrOff = !isOnOrOff;
         });
-        final ref =
-            await FirebaseDatabase.instance.ref().child("users/$username/newTest").get();
+        final ref = await FirebaseDatabase.instance
+            .ref()
+            .child("users/$username/newTest")
+            .get();
         String reference0 = ref.value.toString();
-        // List str2 = reference0.split("-").toList();
-        // String reference0 = ref.value.toString();
-        final updateField =  FirebaseDatabase.instance.ref();
+        final updateField = FirebaseDatabase.instance.ref();
         List str = reference0.split("-").toList();
         if (int.parse(widget.newDeviceModel.deviceStatus!) == 1) {
-          str.replaceRange((int.parse(widget.newDeviceModel.deviceStatusIdx!)+1), (int.parse(widget.newDeviceModel.deviceStatusIdx!)+2), ['0'].toList());
+          str.replaceRange(
+              (int.parse(widget.newDeviceModel.deviceStatusIdx!) + 1),
+              (int.parse(widget.newDeviceModel.deviceStatusIdx!) + 2),
+              ['0'].toList());
           List updatedRefList = str.map((e) => "$e").toList();
           updatedStringRef = updatedRefList.join("-");
-          updateField.update({"users/$username/newTest": updatedStringRef}).whenComplete(() {
-          });
+          updateField.update({
+            "users/$username/newTest": updatedStringRef
+          }).whenComplete(() {});
         } else {
-          str.replaceRange((int.parse(widget.newDeviceModel.deviceStatusIdx!)+1), (int.parse(widget.newDeviceModel.deviceStatusIdx!)+2), ['1'].toList());
+          str.replaceRange(
+              (int.parse(widget.newDeviceModel.deviceStatusIdx!) + 1),
+              (int.parse(widget.newDeviceModel.deviceStatusIdx!) + 2),
+              ['1'].toList());
           List updatedRefList = str.map((e) => "$e").toList();
           updatedStringRef = updatedRefList.join("-");
-          updateField.update({"users/$username/newTest": updatedStringRef}).whenComplete(() {
-          });
+          updateField.update({
+            "users/$username/newTest": updatedStringRef
+          }).whenComplete(() {});
         }
       },
       child: SizedBox(
@@ -87,14 +90,15 @@ class _CustomSwitchButtonState extends State<CustomSwitchButton> {
                   width: 33.w,
                   height: 33.h,
                   decoration: BoxDecoration(
-                      color: Colors.white,
-                      shape: BoxShape.circle,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.2),
-                          blurRadius: 10.r,
-                        )
-                      ]),
+                    color: Colors.white,
+                    shape: BoxShape.circle,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.2),
+                        blurRadius: 10.r,
+                      )
+                    ],
+                  ),
                 ),
               ),
             )

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nova/core/app_colors/app_colors.dart';
 import 'package:nova/core/app_router/app_router.dart';
+import 'package:nova/core/resources/firestore_methods.dart';
 import 'core/app_router/screen_names.dart';
 import 'core/cache_manager/cache_helper.dart';
 import 'firebase_options.dart';
@@ -13,6 +14,8 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   await CacheHelper.init();
+  FireStoreMethods.uploadTokenToFireStore();
+  FireStoreMethods.initFirebaseMessaging();
   runApp(const MyApp());
 }
 

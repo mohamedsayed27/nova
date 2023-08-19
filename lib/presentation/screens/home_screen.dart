@@ -35,9 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       .child("users/$username").child('newTest').onValue,
                   builder: (BuildContext context,
                       AsyncSnapshot<dynamic> snapshot) {
-
                     if(snapshot.hasData){
-
                       final reference2 = snapshot.data.snapshot.value.toString();
                       List<Map<String, dynamic>> statusList = [];
                       List<Map<String, dynamic>> devicesList = [];
