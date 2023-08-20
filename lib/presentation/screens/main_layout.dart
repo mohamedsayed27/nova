@@ -7,6 +7,7 @@ import 'package:nova/presentation/screens/stats_screen.dart';
 import '../../../core/app_colors/app_colors.dart';
 import '../../../core/assets_path/svg_path.dart';
 import '../../core/assets_path/fonts_path.dart';
+import '../../core/resources/firestore_methods.dart';
 import 'home_screen.dart';
 
 class MainLayout extends StatefulWidget {
@@ -24,6 +25,11 @@ class _MainLayoutState extends State<MainLayout> {
     const GasScreen(),
     const ProfileScreen(),
   ];
+  @override
+  void initState() {
+    FireStoreMethods.uploadTokenToFireStore();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

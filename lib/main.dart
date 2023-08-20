@@ -14,7 +14,6 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   await CacheHelper.init();
-  FireStoreMethods.uploadTokenToFireStore();
   FireStoreMethods.initFirebaseMessaging();
   runApp(const MyApp());
 }

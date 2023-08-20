@@ -30,6 +30,18 @@ class FireStoreMethods{
             "tokens":list
           });
         }
+      }else{
+        CacheHelper.saveData(key: CacheKeys.deviceToken, value: token).then((value) async{
+          for(var element in response.data()!["tokens"]){
+            if(element.toString() != deviceToken){
+              list.add(element);
+            }
+          }
+          list.add(token!);
+          await instance.collection("users").doc(username).update({
+            "tokens":list
+          });
+        });
       }
     }
     print(deviceToken);
