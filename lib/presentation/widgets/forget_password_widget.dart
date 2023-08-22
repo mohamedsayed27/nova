@@ -24,7 +24,7 @@ class _ForgetPasswordWidgetState extends State<ForgetPasswordWidget> {
                 checked = val!;
               });
             }),
-        Text('Forget password',style: TextStyle(fontSize: 18.sp),)
+        Text('Remember Password',style: TextStyle(fontSize: 18.sp),)
       ],
     );
   }

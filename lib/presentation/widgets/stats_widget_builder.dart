@@ -8,15 +8,24 @@ import 'add_device_name_dialog.dart';
 class RoomWidgetBuilder extends StatelessWidget {
   final RoomModel? roomModel;
   final String nodeName;
-  const RoomWidgetBuilder({Key? key, required this.roomModel, required this.nodeName}) : super(key: key);
+
+  const RoomWidgetBuilder(
+      {Key? key, required this.roomModel, required this.nodeName})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         InkWell(
-          onTap: (){
-            showDialog(context: context, builder: (context)=>AddDeviceNameAlertDialog(name: roomModel!.roomName, nodeName: nodeName, changeNameType: "rooms",));
+          onTap: () {
+            showDialog(
+                context: context,
+                builder: (context) => AddDeviceNameAlertDialog(
+                      name: roomModel!.roomName,
+                      nodeName: nodeName,
+                      changeNameType: "rooms",
+                    ));
           },
           child: Container(
             height: 60.h,
@@ -27,7 +36,7 @@ class RoomWidgetBuilder extends StatelessWidget {
             ),
             child: Center(
               child: Text(
-                roomModel!.roomName??'Room Name',
+                roomModel!.roomName ?? 'Room Name',
                 style: TextStyle(
                     color: Colors.grey,
                     fontFamily: FontsPath.tajawalRegular,
@@ -36,16 +45,21 @@ class RoomWidgetBuilder extends StatelessWidget {
             ),
           ),
         ),
-        SizedBox(height: 10.h,),
+        SizedBox(
+          height: 10.h,
+        ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Column(
               children: [
-                Text('Temperature',style: TextStyle(
-                    color: Colors.black,
-                    fontFamily: FontsPath.tajawalBold,
-                    fontSize: 16.sp),),
+                Text(
+                  'Temperature',
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontFamily: FontsPath.tajawalBold,
+                      fontSize: 16.sp),
+                ),
                 Container(
                   height: 50.h,
                   width: 90.w,
@@ -54,12 +68,43 @@ class RoomWidgetBuilder extends StatelessWidget {
                     border: Border.all(color: Colors.grey),
                   ),
                   child: Center(
-                    child: Text(
-                      '${roomModel!.temp}%',
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontFamily: FontsPath.tajawalRegular,
-                          fontSize: 16.sp),
+                    child: Row(mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          '${roomModel!.temp}',
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontFamily: FontsPath.tajawalRegular,
+                              fontSize: 16.sp),
+                        ),
+                        SizedBox(width: 5.w,),
+                        RichText(
+                          text: TextSpan(children: [
+                            TextSpan(
+                              text: 'C',
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontFamily: FontsPath.tajawalRegular,
+                                fontSize: 14.sp,
+                              ),
+                            ),
+                            WidgetSpan(
+                              child: Transform.translate(
+                                offset: const Offset(2, -4),
+                                child: Text(
+                                  'o',
+                                  //superscript is usually smaller in size
+                                  textScaleFactor: 0.8,
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontFamily: FontsPath.tajawalRegular,
+                                      fontSize: 14.sp),
+                                ),
+                              ),
+                            )
+                          ]),
+                        )
+                      ],
                     ),
                   ),
                 )
@@ -67,10 +112,14 @@ class RoomWidgetBuilder extends StatelessWidget {
             ),
             Column(
               children: [
-                Text('Humidity',style: TextStyle(
+                Text(
+                  'Humidity',
+                  style: TextStyle(
                     color: Colors.black,
                     fontFamily: FontsPath.tajawalBold,
-                    fontSize: 16.sp),),
+                    fontSize: 16.sp,
+                  ),
+                ),
                 Container(
                   height: 50.h,
                   width: 90.w,
@@ -80,11 +129,12 @@ class RoomWidgetBuilder extends StatelessWidget {
                   ),
                   child: Center(
                     child: Text(
-                      '${roomModel!.hum}%',
+                      '${roomModel!.hum} %',
                       style: TextStyle(
-                          color: Colors.black,
-                          fontFamily: FontsPath.tajawalRegular,
-                          fontSize: 16.sp),
+                        color: Colors.black,
+                        fontFamily: FontsPath.tajawalRegular,
+                        fontSize: 16.sp,
+                      ),
                     ),
                   ),
                 )
